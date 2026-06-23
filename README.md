@@ -35,3 +35,45 @@ Data Analysis: SQL (Data manipulation, aggregation, and querying)
 3. Import the dataset (.csv) into your PostgreSQL database.
 
 4. Execute the SQL queries located in the sql_queries/ folder to explore the dataset structure and analyze the data.
+
+
+
+
+
+
+
+The way I imported the data :
+1. create the database manually
+   ``CREATE TABLE squirrel_data (
+    area_name TEXT,
+    area_id TEXT,
+    park_name TEXT,
+    park_id INT,
+    squirrel_id TEXT,
+    primary_fur_color TEXT,
+    highlights_in_fur_color TEXT,
+    color_notes TEXT,
+    location TEXT,
+    above_ground_height_feet TEXT,
+    specific_location TEXT,
+    activities TEXT,
+    interactions_with_humans TEXT,
+    other_notes_or_observations TEXT,
+    latitude NUMERIC,
+    longitude NUMERIC
+``
+
+2.Use this cmd line to copy the data from the /documents location and duplicate its to the global plce
+<img width="700" height="56" alt="Screenshot 2026-06-23 at 15 43 12" src="https://github.com/user-attachments/assets/6ae5ec3f-ed4b-452b-bc10-de52c1735ff3" />
+So the pgAdmin4 can read the data and take it
+
+3. Copy the data to the table in PostgreSQL with this code :
+``COPY squirrel_data 
+FROM '/tmp/squirrel-data.csv' 
+WITH (FORMAT csv, HEADER true, ENCODING 'WIN1252'); 
+``
+4. Check the dataset
+``
+SELECT  *
+FROM squirrel_data 
+LIMIT 10;``
