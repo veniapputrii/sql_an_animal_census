@@ -18,13 +18,13 @@ Database Management System: PostgreSQL
 Data Analysis: SQL (Data manipulation, aggregation, and querying)
 
 ❓ **Analysis Questions Answered**
-1. This analysis tackles the following core questions:
+ This analysis tackles the following core questions:
 
-2. What is the squirrel population density by specific locations/hectares?
+1. What is the squirrel population density by specific locations/hectares?
 
-3. What are the most common activity trends (e.g., running vs. foraging)?
+2. What are the most common activity trends (e.g., running vs. foraging)?
 
-4. How do environmental factors, such as the time of day (AM vs. PM shift), impact squirrel behaviors?
+3. How do environmental factors, such as the time of day (AM vs. PM shift), impact squirrel behaviors?
 
 🚀 **How to Run the Queries**
 
@@ -78,3 +78,10 @@ SELECT  *
 FROM squirrel_data 
 LIMIT 10;
 ```
+💡 **The answers for the tasks **
+1. What is the squirrel population density by specific locations/hectares?
+<p><img width="870" height="1210" alt="F5D0B226-A805-4C8A-B580-076C421C9925" src="https://github.com/user-attachments/assets/c0b82e4f-88d0-45c3-a7fa-834c96889208" /></p>
+2. What are the most common activity trends (e.g., running vs. foraging)?
+<p><img width="564" height="718" alt="image" src="https://github.com/user-attachments/assets/4b2c11c2-7d35-43ed-84c9-38eab7fb374a" /></p>
+
+
