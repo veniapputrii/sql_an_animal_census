@@ -1,5 +1,5 @@
 # 🐿️ Exploring Squirrel Census Data
-📝 **Project Overview**
+📝 <b>Project Overview</b>
 
 This project analyzes data from the New York City Squirrel Census to gain insights into squirrel populations and behaviors. By utilizing SQL, this analysis uncovers patterns such as population density across different locations, common activity trends (like foraging and running), and the impact of environmental factors like the time of day.
 
@@ -83,5 +83,17 @@ LIMIT 10;
 <p><img width="870" height="1210" alt="F5D0B226-A805-4C8A-B580-076C421C9925" src="https://github.com/user-attachments/assets/c0b82e4f-88d0-45c3-a7fa-834c96889208" /></p>
 2. What are the most common activity trends (e.g., running vs. foraging)?
 <p><img width="564" height="718" alt="image" src="https://github.com/user-attachments/assets/4b2c11c2-7d35-43ed-84c9-38eab7fb374a" /></p>
+3. Environmental Factors.
+Such as the shifting time, like AM/PM doesn't exist.
+<img width="261" height="416" alt="Screenshot 2026-06-28 at 21 42 55" src="https://github.com/user-attachments/assets/02809986-080a-496a-bbe5-37e1b71723b6" />
+<p>Inspection of the database schema and regex pattern analysis of the squirrel_id composite keys confirmed that shift-timing metadata (AM/PM) from the 2018 census format was omitted in this 2020 citywide dataset release. To maintain analytical integrity, the environmental variable was pivoted to the location plane (Ground Plane vs. Above Ground) to evaluate how physical terrain impacts squirrel behavioral trends.</p>
+<img width="1048" height="410" alt="image" src="https://github.com/user-attachments/assets/4bf3cfd9-2d15-42cc-b9cb-0bd0df3b1ff9" />
+
+🌳 <b>Ecological Insights: The Vertical Trade-Off</b>
+<p>Urban wildlife constantly balances calorie acquisition against predation risk. By grouping SQL sightings across vertical space, two distinct behavioral scripts emerge:</p>
+
+<p>The Ground Plane (Resource Extraction): The park floor serves as the primary urban food source, dominated by foraging (223) and eating (111). Because terrestrial spaces carry high predation risk from dogs and humans, squirrels rely on rapid, vigilant locomotion (running: 90) to safely navigate between feeding zones.</p>
+
+<p>Above Ground (Sanctuary & Digestion): The canopy functions as a safety refuge where deliberate vertical movement (climbing: 98) replaces high-speed sprinting (running: 12). Foraging drops drastically (14), while animals use the elevated shelter to rest, observe their territory, and safely digest meals carried up from the soil (eating: 18).</p>
 
 
