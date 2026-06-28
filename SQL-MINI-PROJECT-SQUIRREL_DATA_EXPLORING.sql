@@ -2,6 +2,7 @@
 
 
 
+
 begin;
 
 -- 2. Build the 16-slot container
@@ -85,3 +86,32 @@ SELECT 'Sitting', COUNT(*) FILTER (WHERE sitting_activities = true) FROM squirre
 UNION ALL
 SELECT 'Lounging', COUNT(*) FILTER (WHERE lounging_activities = true) FROM squirrel_data
 ORDER BY total DESC;
+ROLLBACK;
+
+Begin;
+
+--✨ Environmenatal Factors (AM vs PM Shift)
+SELECT
+	CASE
+		WHEN squirrel_id LIKE '%AM%' THEN 'Morning Shift'
+		WHEN squirrel_id LIKE '%PM%' THEN 'Afternoon Shift'
+		ELSE 'Unknown'
+	END AS time_of_day,
+	activities,
+	COUNT(*) as behaviour_count
+FROM squirrel_data
+WHERE activities IS NOT NULL
+GROUP BY time_of_day, activities
+ORDER BY time_of_day, behaviour_count DESC;
+
+--✨ A vertical habitat (location)
+SELECT 
+    location AS environmental_plane,
+    COUNT(*) FILTER (WHERE activities ILIKE '%Running%') AS running,
+    COUNT(*) FILTER (WHERE activities ILIKE '%Foraging%') AS foraging,
+    COUNT(*) FILTER (WHERE activities ILIKE '%Climbing%') AS climbing,
+    COUNT(*) FILTER (WHERE activities ILIKE '%Eating%') AS eating
+FROM squirrel_data
+WHERE location IS NOT NULL
+GROUP BY location
+ORDER BY foraging DESC;
