@@ -1,9 +1,5 @@
 
-
-
-
-
-begin;
+BEGIN;
 
 -- 2. Build the 16-slot container
 CREATE TABLE squirrel_data (
@@ -28,7 +24,7 @@ CREATE TABLE squirrel_data (
 -- 3. Suck the file in
 COPY squirrel_data FROM '/Users/heidi/Downloads/squirrel-data.csv' WITH (FORMAT csv);
 select * from squirrel_data;
-rollback;
+ROLLBACK;
 
 --✨ Filtering location
 Select
@@ -42,7 +38,7 @@ order by total_squirrels DESC;
 --✨ Common Activity Trend
 select * from squirrel_data;
 --use ILIKE for a sensitive value like Foraging, Nesting/gathering leaves
-CREATE TEMP TABLE temp_common as
+CREATE TEMP TABLE temp_common as --Make a temporary table
 SELECT
 	COUNT(*) FILTER(WHERE activities ILIKE '%Running%') AS Running_Activities,
 	COUNT (*) FILTER (WHERE activities ILIKE '%Chasing') AS Chasing_Activities,
@@ -58,10 +54,8 @@ SELECT
 	COUNT (*) FILTER (WHERE activities ILIKE '%Lounging%') AS Lounging_Activities
 From squirrel_data;
 Select * From temp_common;
-Begin;
 
-
-SELECT 'Foraging' AS activities_name, COUNT(*) FILTER (WHERE foraging_activities = true) AS total FROM temp_common
+SELECT 'Foraging' AS activities_name, COUNT(*) FILTER (WHERE foraging_activities = true) AS total FROM temp_common --Use the temp table
 UNION ALL
 SELECT 'Nesting', COUNT(*) FILTER (WHERE nesting_activities = true) FROM squirrel_data
 UNION ALL
@@ -88,12 +82,12 @@ SELECT 'Lounging', COUNT(*) FILTER (WHERE lounging_activities = true) FROM squir
 ORDER BY total DESC;
 ROLLBACK;
 
-Begin;
 
---✨ Environmenatal Factors (AM vs PM Shift)
+
+--✨ Environmental Factors (AM vs PM Shift)
 SELECT
 	CASE
-		WHEN squirrel_id LIKE '%AM%' THEN 'Morning Shift'
+		WHEN squirrel_id LIKE '%AM%' THEN 'Morning Shift' 
 		WHEN squirrel_id LIKE '%PM%' THEN 'Afternoon Shift'
 		ELSE 'Unknown'
 	END AS time_of_day,
